@@ -1,0 +1,69 @@
+{
+  "bin": {
+    "win32": "start_windows",
+    "linux": "bash start_linux",
+    "darwin": "bash start_macos.sh"
+  },
+  "run": [{
+    "method": "shell.run",
+    "params": {
+      "message": "npm install"
+    }
+  }, {
+    "uri": "./index.js",
+    "method": "download"
+  }, {
+    "method": "shell.start",
+    "params": {
+      "path": "text-generation-webui"
+    }
+  }, {
+    "method": "shell.enter",
+    "params": {
+      "message": "{{self.bin[os.platform()]}}",
+      "on": [{
+        "event": "/what is your gpu/i",
+        "return": true
+      }]
+    }
+  }, {
+    "method": "input",
+    "params": {
+      "title": "GPU Type",
+      "type": "notify",
+      "form": [{
+        "key": "input",
+        "description": "What is your GPU?",
+        "placeholder": "Enter A, B, C, or D"
+      }]
+    }
+  }, {
+    "method": "local.set",
+    "params": {
+      "type": "{{input.input}}"
+    }
+  }, {
+    "method": "fs.write",
+    "params": {
+      "path": "text-generation-webui/CMD_FLAGS.txt",
+      "text": "{{local.type.trim().toLowerCase() === 'd' ? '--cpu' : ' '}}"
+    }
+  }, {
+    "method": "shell.enter",
+    "params": {
+      "message": "{{local.type}}",
+      "on": [{
+        "event": "/Running on local URL:.*(http[0-9:./]+)/i",
+        "return": "{{event.matches[0][1]}}"
+      }]
+    }
+  }, {
+    "method": "notify",
+    "params": {
+      "html": "Success! Click to open the browser at {{input}}",
+      "href": "{{input}}"
+    }
+  }, {
+    "method": "process.wait"
+  }]
+}

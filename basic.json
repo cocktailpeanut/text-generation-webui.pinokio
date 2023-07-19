@@ -1,0 +1,36 @@
+{
+  "bin": {
+    "win32": "start_windows",
+    "linux": "bash start_linux",
+    "darwin": "bash start_macos.sh"
+  },
+  "run": [{
+    "uri": "./index.js",
+    "method": "update_flags",
+    "params": {
+      "remove": "--notebook --chat"
+    }
+  }, {
+    "method": "shell.start",
+    "params": {
+      "path": "text-generation-webui"
+    }
+  },{
+    "method": "shell.enter",
+    "params": {
+      "message": "{{self.bin[os.platform()]}}",
+      "on": [{
+        "event": "/Running on local URL:.*(http[0-9:./]+)/i",
+        "return": "{{event.matches[0][1]}}"
+      }]
+    }
+  }, {
+    "method": "notify",
+    "params": {
+      "html": "Success! Click to open the browser at {{input}}",
+      "href": "{{input}}"
+    }
+  }, {
+    "method": "process.wait"
+  }]
+}

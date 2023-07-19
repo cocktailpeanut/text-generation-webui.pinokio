@@ -1,0 +1,52 @@
+{
+  "bin": {
+    "win32": "start_windows",
+    "linux": "bash start_linux",
+    "darwin": "bash start_macos.sh"
+  },
+  "run": [{
+    "method": "fs.read",
+    "params": {
+      "path": "text-generation-webui/CMD_FLAGS.txt",
+      "encoding": "utf8"
+    }
+  }, {
+    "method": "input",
+    "params": {
+      "title": "Flags",
+      "form": [{
+        "key": "flags",
+        "default": "{{input}}",
+        "description": "stored under text-generation-webui/CMD_FLAGS.txt"
+      }]
+    }
+  }, {
+    "method": "fs.write",
+    "params": {
+      "path": "text-generation-webui/CMD_FLAGS.txt",
+      "text": "{{input.flags}}"
+    }
+  }, {
+    "method": "shell.start",
+    "params": {
+      "path": "text-generation-webui"
+    }
+  },{
+    "method": "shell.enter",
+    "params": {
+      "message": "{{self.bin[os.platform()]}}",
+      "on": [{
+        "event": "/Running on local URL:.*(http[0-9:./]+)/i",
+        "return": "{{event.matches[0][1]}}"
+      }]
+    }
+  }, {
+    "method": "notify",
+    "params": {
+      "html": "Success! Click to open the browser at {{input}}",
+      "href": "{{input}}"
+    }
+  }, {
+    "method": "process.wait"
+  }]
+}
