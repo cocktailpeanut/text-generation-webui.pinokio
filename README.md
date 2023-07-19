@@ -5,7 +5,8 @@ A one-click installer for [oobabooga/text-generation-webui](https://github.com/o
 # How to use
 
 1. Install with the [install.json](install.json) script
-2. Run either the [basic.json](basic.json), [chat.json](chat.json), or [notebook.json](notebook.json). This will launch the web ui.
+2. The installation will open in a **default mode**. If you want to try other modes like chat mode and notebook mode, **click stop** to stop the server and come back to the project page, and you will see buttons like **start chat mode**, **start basic mode**, **start notebook mode**, and **start with custom flags**.
+2. Run either the [basic.json](basic.json), [chat.json](chat.json), [notebook.json](notebook.json), or [custom.json](custom.json). This will launch the web ui.
 3. Make sure to add a model in the "Model" tab (Explained below)
 
 # Running Llama 2
@@ -55,3 +56,7 @@ One column used for both input and output
 Chat UI.
 
 ![chat_mode.png](chat_mode.png)
+
+## 4. Custom mode
+
+If you are an advanced user and want to directly tweak the command line flags as explained here: https://github.com/oobabooga/text-generation-webui#starting-the-web-ui you can use this mode
