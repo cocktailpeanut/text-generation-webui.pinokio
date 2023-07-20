@@ -42,7 +42,7 @@ That's all! You're now ready to play with your model!
 
 The default mode. Separate columns for input and output.
 
-![chat_mode.png](chat_mode.png?raw=true)
+![[basic_mode.png](basic_mode.png?raw=true)
 
 ## 2. Notebook mode
 
