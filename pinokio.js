@@ -10,6 +10,9 @@ module.exports = {
 //      return "start.json"
 //    }
 //  },
+  title: "Text generation webui",
+  description: "A gradio web UI for running Large Language Models like LLaMA, llama.cpp, GPT-J, Pythia, OPT, and GALACTICA.",
+  icon: "icon.png",
   menu: async (kernel) => {
     let menu = [{
       html: '<i class="fa-solid fa-microchip"></i> Install',
