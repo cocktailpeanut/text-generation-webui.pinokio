@@ -17,7 +17,7 @@
   }, {
     "method": "shell.run",
     "params": {
-      "message": "git checkout -b 601fc424cd2a5bb6abed3486863345b6eb6df38f"
+      "message": "git checkout 601fc424cd2a5bb6abed3486863345b6eb6df38f"
     }
   }, {
     "uri": "./index.js",
