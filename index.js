@@ -42,6 +42,12 @@ class Oobabooga {
     await fs.promises.cp(src, dest)
 
   }
+  async patch(req, ondata, kernel) {
+    ondata({ raw: `\r\nPatching webui.py` })
+    const src = path.resolve(__dirname, "webui.py")
+    const dest = path.resolve(__dirname, "text-generation-webui", "webui.py")
+    await fs.promises.cp(src, dest)
+  }
   async update_flags(req, ondata, kernel) {
     // if the requested flag exists, don't add.
     // but if not, add

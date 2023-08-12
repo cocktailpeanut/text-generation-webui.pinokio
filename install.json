@@ -10,8 +10,18 @@
       "message": "npm install"
     }
   }, {
+    "method": "shell.run",
+    "params": {
+      "message": "git clone https://github.com/oobabooga/one-click-installers.git text-generation-webui"
+    }
+  }, {
+    "method": "shell.run",
+    "params": {
+      "message": "git checkout -b 601fc424cd2a5bb6abed3486863345b6eb6df38f"
+    }
+  }, {
     "uri": "./index.js",
-    "method": "download"
+    "method": "patch"
   }, {
     "method": "shell.start",
     "params": {
