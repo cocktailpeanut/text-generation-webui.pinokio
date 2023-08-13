@@ -25,10 +25,16 @@
       }]
     }
   }, {
-    "method": "notify",
+    "method": "self.set",
     "params": {
-      "html": "Success! Click to open the browser at {{input}}",
-      "href": "{{input}}"
+      "session.json": {
+        "url": "{{input}}"
+      }
+    }
+  }, {
+    "method": "browser.open",
+    "params": {
+      "uri": "/?selected=Text Generation webui"
     }
   }, {
     "method": "process.wait"

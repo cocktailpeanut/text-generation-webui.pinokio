@@ -15,12 +15,6 @@
       "message": "git clone https://github.com/oobabooga/one-click-installers.git text-generation-webui"
     }
   }, {
-    "method": "shell.run",
-    "params": {
-      "message": "git checkout 601fc424cd2a5bb6abed3486863345b6eb6df38f",
-      "path": "text-generation-webui"
-    }
-  }, {
     "uri": "./index.js",
     "method": "patch"
   }, {
@@ -69,12 +63,15 @@
       }]
     }
   }, {
-    "method": "notify",
+    "method": "input",
     "params": {
-      "html": "Success! Click to open the browser at {{input}}",
-      "href": "{{input}}"
+      "title": "Install Success",
+      "description": "Go back to the dashboard and launch the app!"
     }
   }, {
-    "method": "process.wait"
+    "method": "browser.open",
+    "params": {
+      "uri": "/?selected=Text generation webui"
+    }
   }]
 }

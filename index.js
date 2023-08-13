@@ -64,25 +64,29 @@ class Oobabooga {
       let existingChunks = existing.split(/\s+/)
 
       // remove
-      let remove_chunks= req.params.remove.split(" ")
-      let toRemove = []
-      for(let chunk of remove_chunks) {
-        let index = existingChunks.indexOf(chunk)
-        if (index !== -1) {
-          existingChunks.splice(index, 1);
+      if (req.params && req.params.remove) {
+        let remove_chunks= req.params.remove.split(" ")
+        let toRemove = []
+        for(let chunk of remove_chunks) {
+          let index = existingChunks.indexOf(chunk)
+          if (index !== -1) {
+            existingChunks.splice(index, 1);
+          }
         }
       }
 
       // add
-      let add_chunks = req.params.add.split(" ")
-      let toInclude = []
-      for(let chunk of add_chunks) {
-        if (!existingChunks.includes(chunk)) {
-          toInclude.push(chunk) 
+      if (req.params && req.params.add) {
+        let add_chunks = req.params.add.split(" ")
+        let toInclude = []
+        for(let chunk of add_chunks) {
+          if (!existingChunks.includes(chunk)) {
+            toInclude.push(chunk) 
+          }
         }
-      }
-      for(let chunk of toInclude) {
-        existingChunks.push(chunk)
+        for(let chunk of toInclude) {
+          existingChunks.push(chunk)
+        }
       }
       let updated = existingChunks.join(" ") 
       await fs.promises.writeFile(filename, updated)
