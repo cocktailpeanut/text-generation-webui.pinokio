@@ -1,7 +1,7 @@
 {
   "bin": {
     "win32": "start_windows",
-    "linux": "bash start_linux",
+    "linux": "bash start_linux.sh",
     "darwin": "bash start_macos.sh"
   },
   "run": [{
